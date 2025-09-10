@@ -1,9 +1,9 @@
 from flask import Blueprint, request, jsonify
 from app.controllers.llm_controller import handle_llm_query
 
-bp = Blueprint("llm_routes", __name__)
+llm_bp = Blueprint("llm_routes", __name__)
 
-@bp.route("/query", methods=["POST"])
+@llm_bp.route("/query", methods=["POST"])
 def query():
     data = request.get_json()
     user_query = data.get("query")

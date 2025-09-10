@@ -64,5 +64,7 @@ def embed_and_store(row: dict, row_id: str):
 # Load CSV and push to Pinecone in batches
 with open("cleaned_metadata[1].csv", "r", encoding="utf-8") as f:
     reader = csv.DictReader(f)
-    for i, row in enumerate(reader, start=71861):
+    for i, row in enumerate(reader):
+        if i <= 75105:
+            continue  # skip rows already stored
         embed_and_store(row, row_id=f"record-{i}")

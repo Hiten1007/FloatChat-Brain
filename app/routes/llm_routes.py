@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.controllers.llm_controller import handle_llm_query
+from app.controllers.llm_controller import run_mcp_agent_flow
 
 llm_bp = Blueprint("llm_routes", __name__)
 
@@ -11,7 +11,7 @@ def query():
         return jsonify({"error": "Missing 'query'"}), 400
 
     try:
-        response = handle_llm_query(user_query)
+        response = run_mcp_agent_flow(user_query)
         return jsonify(response)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
